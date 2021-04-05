@@ -25,9 +25,7 @@ jobs:
         run: devenv wolfssl64.sln /Upgrade
 
       - name: Build Project
-        run: devenv wolfssl64.sln /Build
-
-      - run: dir .
+        run: devenv wolfssl64.sln /Build Release
 
       - uses: actions/upload-artifact@v2
         with:
