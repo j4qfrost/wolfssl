@@ -22,7 +22,7 @@ jobs:
           arch: x64
 
       - name: Upgrade Project
-        run: devenv /Upgrade wolfssl.vcproj
+        run: devenv wolfssl.vcproj /Upgrade
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
