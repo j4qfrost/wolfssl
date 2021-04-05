@@ -16,20 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v1
-
-      - name: Restore NuGet packages
-        working-directory: ${{env.GITHUB_WORKSPACE}}
-        run: msbuild -t:restore -toolsversion:3.5 wolfssl64.sln
-
       - name: Set up Visual Studio shell
         uses: egor-tensin/vs-shell@v2
         with:
           arch: x64
 
       - name: Upgrade Project
-        run: devenv /Upgrade wolfssl.vsproj
+        run: devenv /Upgrade wolfssl.vcproj
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Restore NuGet packages
+        working-directory: ${{env.GITHUB_WORKSPACE}}
+        run: msbuild -t:restore -toolsversion:3.5 wolfssl64.sln
 
       - name: Build
         working-directory: ${{env.GITHUB_WORKSPACE}}
