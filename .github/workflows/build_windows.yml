@@ -16,6 +16,14 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up Visual Studio shell
+        uses: egor-tensin/vs-shell@v2
+        with:
+          arch: x64
+
+      - name: Upgrade Project
+        run: devenv wolfssl64.sln /Upgrade
+
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
 
