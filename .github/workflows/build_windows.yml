@@ -22,7 +22,7 @@ jobs:
           arch: x64
 
       - name: Upgrade Project
-        run: devenv wolfssl.vcproj /Upgrade
+        run: devenv wolfssl.vcproj /Upgrade /p:RunWixToolsOutOfProc=true
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
