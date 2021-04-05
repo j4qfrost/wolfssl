@@ -11,9 +11,6 @@ env:
 
 jobs:
   build:
-    strategy:
-      matrix:
-        solution: ["", "64", "-ntru"]
     runs-on: windows-latest
 
     steps:
@@ -22,14 +19,22 @@ jobs:
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v1
 
+      - name: Set up Visual Studio shell
+        uses: egor-tensin/vs-shell@v2
+        with:
+          arch: x64
+
+      - name: Upgrade Project
+        run: devenv /Upgrade wolfssl.vsproj
+
       - name: Restore NuGet packages
         working-directory: ${{env.GITHUB_WORKSPACE}}
-        run: nuget restore wolfssl${{matrix.solution}}.sln
+        run: nuget restore wolfssl64.sln
 
       - name: Build
         working-directory: ${{env.GITHUB_WORKSPACE}}
-        run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} wolfssl${{matrix.solution}}.sln
+        run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} wolfssl64.sln
       - uses: actions/upload-artifact@v2
         with:
-          name: wolfssl-windows${{matrix.solution}}
+          name: wolfssl-windows64
           path: src/.libs/
