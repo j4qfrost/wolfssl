@@ -27,6 +27,8 @@ jobs:
       - name: Build Project
         run: devenv wolfssl64.sln /Build
 
+      - run: dir .
+
       - uses: actions/upload-artifact@v2
         with:
           name: wolfssl-windows64
