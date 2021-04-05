@@ -16,9 +16,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v1
-
       - name: Set up Visual Studio shell
         uses: egor-tensin/vs-shell@v2
         with:
@@ -27,6 +24,9 @@ jobs:
       - name: Upgrade Project
         run: devenv /Upgrade wolfssl.vsproj
 
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v1
+
       - name: Restore NuGet packages
         working-directory: ${{env.GITHUB_WORKSPACE}}
         run: nuget restore wolfssl64.sln
@@ -34,6 +34,7 @@ jobs:
       - name: Build
         working-directory: ${{env.GITHUB_WORKSPACE}}
         run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} wolfssl64.sln
+
       - uses: actions/upload-artifact@v2
         with:
           name: wolfssl-windows64
