@@ -24,13 +24,6 @@ jobs:
       - name: Upgrade Project
         run: devenv wolfssl64.sln /Upgrade
 
-      # - name: Add MSBuild to PATH
-      #   uses: microsoft/setup-msbuild@v1
-
-      # - name: Build
-      #   working-directory: ${{env.GITHUB_WORKSPACE}}
-      #   run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} -toolsversion:3.5 wolfssl64.sln
-
       - name: Build Project
         run: devenv wolfssl64.sln /Build
 
@@ -38,3 +31,4 @@ jobs:
         with:
           name: wolfssl-windows64
           path: src/.libs/
+          if-no-files-found: error

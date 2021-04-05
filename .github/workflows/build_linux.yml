@@ -24,3 +24,4 @@ jobs:
         with:
           name: wolfssl-linux
           path: src/.libs/
+          if-no-files-found: error

@@ -26,3 +26,4 @@ jobs:
         with:
           name: wolfssl-macos
           path: src/.libs/
+          if-no-files-found: error
